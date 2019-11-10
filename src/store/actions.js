@@ -21,7 +21,6 @@ export default {
     async getCategorysAction({commit}){
         let result = await getCategorys()
         if (result.code === 0) {
-            // commit(SAVE_ADDRESS, {address: result.data})
             commit(SAVE_CATEGORYS, {categorys: result.data})
 
         }

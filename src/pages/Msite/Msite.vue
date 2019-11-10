@@ -37,7 +37,9 @@
           <div class="swiper-slide" v-for="(category, index) in newCateGorys" :key="index">
             <a href="javascript:" class="link_to_food" v-for="(categoryItem, index) in category" :key="index">
               <div class="food_container">
-                <img :src="`https://fuss10.elemecdn.com${categoryItem.image_url}`" />
+                <!-- <img :src="`https://fuss10.elemecdn.com${categoryItem.image_url}`" /> -->
+                <img :src="`https://fuss10.elemecdn.com${categoryItem.image_url}`">
+
               </div>
               <span>{{categoryItem.title}}</span>
             </a>
@@ -227,7 +229,7 @@
 import { Swiper } from "swiper";
 import 'swiper/css/swiper.min.css'
 
-import {mapState} from ''
+import {mapState} from 'vuex'
 import _ from 'lodash'
 
 export default {

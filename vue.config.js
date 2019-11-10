@@ -1,39 +1,40 @@
-
-
-
-  let path = require('path');
-
-  const px2rem = require('postcss-px2rem')
+const path = require('path')
+const px2rem = require('postcss-px2rem')
 // 配置postcs-px2rem
-  const postcss = px2rem({
-    remUnit: 37.5   //基准大小 baseSize，需要和rem.js中单位rem值占比一样相同
-  })
+const postcss = px2rem({
+  remUnit: 37.5   // 设计稿等分后的rem值   750/10 = 75
+})
 
-  function resolve (dir) {
-    return path.join(__dirname, dir)
-  }
-  
-  module.exports = {
-    runtimeCompiler: true,
-    lintOnSave: false,
-    configureWebpack: {// 当前配置需要写入该选项中
-      resolve: {
-        extensions: ['.js', '.vue', '.json'],
-        alias: {
-          'vue$': 'vue/dist/vue.esm.js', 
-          '@': resolve('src'), // 设置文件查找路径，可简写文件查找路径
-          'components': resolve('src/components'),
-        }
+
+
+function resolve (dir) {
+  return path.join(__dirname,  dir)
+}
+
+
+
+
+module.exports = {
+  runtimeCompiler: true, // 运行时包含编译器的版本
+  lintOnSave: false, // 关闭ESLint编译
+  configureWebpack : {
+    resolve: {
+      extensions: ['.js', '.vue', '.json'],
+      alias: {
+        'vue$': 'vue/dist/vue.esm.js',
+        '@': resolve('src'),
+        'components': resolve('src/components'),
       }
     },
-    css: { // 添加postcss配置
-      loaderOptions: {
-        postcss: {
-          plugins: [
-            postcss
-          ]
-        }
+  },
+  css: { // 添加postcss配置
+    loaderOptions: {
+      postcss: {
+        plugins: [
+          postcss
+        ]
       }
+    }
   },
   devServer: {
     proxy: {
@@ -46,4 +47,4 @@
       }
     }
   },
-  }
+}
